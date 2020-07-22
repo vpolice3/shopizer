@@ -1,11 +1,5 @@
 pipeline {
  agent any
- options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
- triggers {
-    cron('@daily')
-  }
   stages {
     stage('SCM') {
       steps {
