@@ -1,9 +1,9 @@
 pipeline {
  agent any
   stages {
-    stage('SCM') {
+    stage('git Clone') {
       steps {
-         git 'https://github.com/Debadutta-Pradhan/shopizer.git'
+         git URL 'https://github.com/Debadutta-Pradhan/shopizer.git'
        }
     }
    stage("Build") {
