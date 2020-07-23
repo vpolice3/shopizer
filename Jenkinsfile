@@ -15,7 +15,7 @@ pipeline {
 	   
     bat '''
            
-           mvn clean install
+           
 	   mvn <args> -rf :sm-core
                    
        '''
