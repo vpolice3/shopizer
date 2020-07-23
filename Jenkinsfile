@@ -37,6 +37,15 @@ pipeline {
                 }
             }
         }
+	
+    stage('Build images') {
+	      steps {
+		bat '''
+		  cd sm-shop
+		  docker build -f "Dockerfile" -t debaduttapradhan1996/shopizer-app:latest .
+		'''
+	      }
+       }
  
   
 }
