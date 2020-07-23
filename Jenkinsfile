@@ -11,8 +11,7 @@ pipeline {
 	   
     bat ''' 
 	    mvn clean install
-      cd sm-core
-	    mvn <args> -rf :sm-core
+      	    mvn install -Dmaven.test.skip=true
        '''
    }
    }
