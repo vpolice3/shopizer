@@ -16,9 +16,7 @@ pipeline {
     bat '''
            
            mvn clean install
-	   java -version
-           mvn -version
-           mvn clean package
+	   mvn <args> -rf :sm-core
                    
        '''
    }
