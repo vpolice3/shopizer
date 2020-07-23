@@ -15,7 +15,7 @@ pipeline {
     bat '''
            
            mvn clean install
-	         java -version
+	   java -version
            mvn -version
            mvn clean package
                    
