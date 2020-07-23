@@ -47,20 +47,17 @@ pipeline {
 		'''
 	      }
        }
-	  
-       stage('Publish') {
-	      when {
-		branch '2.12.0'
-	      }
-	      steps {
-		    
-			bat '''
-			  withDockerRegistry([ credentialsId: "docker_hub", url: "'https://registry.hub.docker.com/'" ])
-			  docker push debaduttapradhan1996/shopizer-app:latest
-
-			 '''
-     		 }
-    	    }
+stage('Publish') {
+     steps {
+	     withRegistry('https://registry.hub.docker.com/', 'docker_Hub'){
+		bat '''
+		
+		 docker push debaduttapradhan1996/shopizer-app:latest
+		 
+     		 '''	 
+	     }
+      }
+    }
  
   
 }
