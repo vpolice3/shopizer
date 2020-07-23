@@ -12,7 +12,7 @@ pipeline {
         maven 'apache-maven-3.6.3'
         }
      steps {
-	   export MAVEN_OPTS="-Xmx3000m"
+	   
     bat '''
            
            mvn clean install
