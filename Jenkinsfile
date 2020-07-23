@@ -10,7 +10,7 @@ pipeline {
      steps {
 	   
     bat ''' 
-    	    mvn install -DskipTests=false
+    	    clean install -DskipTests=true
 	    mvn clean install
       	    
        '''
