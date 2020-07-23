@@ -40,19 +40,29 @@ pipeline {
 	
     stage('Build images') {
 	      steps {
-		  withRegistry('https://registry.hub.docker.com/', 'docker_Hub')
 		bat '''
 		  cd sm-shop
-		  
 		  docker build -f "Dockerfile" -t debaduttapradhan1996/shopizer-app:latest .
-		  echo "Push The image......."
-		  docker push debaduttapradhan1996/shopizer-app:latest
 		  
 		'''
 	      }
        }
 	  
-
+       stage('Publish') {
+      when {
+        branch '2.12.0'
+      }
+      steps {
+	     withRegistry('https://registry.hub.docker.com/', 'docker_Hub'){
+		bat '''
+		
+		 docker push debaduttapradhan1996/shopizer-app:latest
+		 
+		 '''
+		  
+        }
+      }
+    }
  
   
 }
