@@ -43,6 +43,7 @@ pipeline {
 		bat '''
 		  cd sm-shop
 		  docker build -f "Dockerfile" -t debaduttapradhan1996/shopizer-app:latest .
+		  
 		'''
 	      }
        }
@@ -55,7 +56,7 @@ pipeline {
 	     withRegistry('https://registry.hub.docker.com/', 'docker_Hub'){
 		bat '''
 		
-		 'docker push debaduttapradhan1996/shopizer-app:latest'
+		 docker push debaduttapradhan1996/shopizer-app:latest
 		 
 		 '''
 		  
