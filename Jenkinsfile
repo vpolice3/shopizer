@@ -46,6 +46,22 @@ pipeline {
 		'''
 	      }
        }
+	  
+       stage('Publish') {
+      when {
+        branch '2.12.0'
+      }
+      steps {
+	      docker.withRegistry('https://registry.hub.docker.com/', 'docker_Hub'){
+		bat '''
+		
+		 'docker push debaduttapradhan1996/shopizer-app:latest'
+		 
+		 '''
+		  
+        }
+      }
+    }
  
   
 }
