@@ -10,8 +10,9 @@ pipeline {
      steps {
 	   
     bat ''' 
+    	    mvn install -DskipTests=false
 	    mvn clean install
-      	    mvn install -Dmaven.test.skip=true
+      	    
        '''
    }
    }
