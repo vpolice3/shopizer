@@ -51,7 +51,7 @@ pipeline {
        }
 stage('Publish') {
      steps {
-	     withRegistry('https://registry.hub.docker.com/', 'docker_hub'){
+	    withDockerRegistry([ credentialsId: 'Docker_Hub', url: 'https://hub.docker.com/' ]){
 		bat '''
 		
 		 docker push debaduttapradhan1996/shopizer-app:latest
