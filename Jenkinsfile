@@ -17,17 +17,7 @@ pipeline {
    }
    }
 	  
-   stage('SonarQube') {
-                steps {
-                   bat '''
-                     
-              mvn sonar:sonar \
-                    -Dsonar.projectKey=shopizer \
-                    -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=b671d65077153b089e410f7281ce474c4d27fd4d  
-                   '''
-   }
-   }
+
 
    stage('Approval') {
             // no agent, so executors are not used up when waiting for approvals
