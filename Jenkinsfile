@@ -42,7 +42,7 @@ pipeline {
    
      stage('Push Docker image') {
 	      steps{
-		    withDockerRegistry([ credentialsId: "Docker_Hub", url: "https://hub.docker.com/" ]){
+		    withDockerRegistry([ credentialsId: "Docker_Hub", url: "https://index.docker.io/" ]){
 			   
 			bat "docker push debaduttapradhan1996/shopizer-app:latest"   
 	  	   }
