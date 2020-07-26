@@ -46,6 +46,7 @@ pipeline {
            bat 'docker push debaduttapradhan1996/shopizer-app:latest'
                }
         }
+  }
 }
 post {
         always {
