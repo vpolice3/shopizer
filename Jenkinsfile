@@ -41,14 +41,12 @@ pipeline {
        }
    
      stage('Push Docker image') {
-	       environment {
-                DOCKER_HUB_LOGIN = credentials('Docker-Hub')
-            }
-	     steps{
-		 
-		 bat "docker login -u janedoe -p <password>"
-		 bat "docker push debaduttapradhan1996/shopizer-app:latest"    
-	     }
+	  steps{
+		    withDockerRegistry([ credentialsId: "Docker_Hub", url: "https://index.docker.io/" ]){
+			
+			bat "docker push debaduttapradhan1996/shopizer-app:latest"   
+	  	   }
+	   }
        } 
 }
 post {
