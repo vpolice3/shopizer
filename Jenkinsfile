@@ -42,12 +42,12 @@ pipeline {
    
      stage('Push Docker image') {
             environment {
-                DOCKER_HUB_LOGIN = credentials('Docker_Hub')
+                DOCKER_HUB_LOGIN = credentials('Docker_Hub','https://hub.docker.com/repositories')
             }
             steps {
 		 bat '''
 		 
-			docker login -u debaduttapradhan1996 -p Dinesh@1995
+			docker login -u debaduttapradhan1996 --password-stdin
 			docker push debaduttapradhan1996/shopizer-app:latest
 		
 		'''
