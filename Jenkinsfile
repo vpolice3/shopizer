@@ -33,23 +33,27 @@ pipeline {
     stage('Build images') {
 	      steps {
 		bat '''
-		  cd sm-shop
-		  docker build -f "Dockerfile" -t debaduttapradhan1996/shopizer-app:latest .
+			  cd sm-shop
+			  docker build -f "Dockerfile" -t debaduttapradhan1996/shopizer-app:latest .
 		  
 		'''
 	      }
        }
-stage('Publish') {
-     steps {
-	    withDockerRegistry([ credentialsId: 'Docker_Hub', url: 'https://hub.docker.com/' ]){
-		bat '''
-		
-		 docker push debaduttapradhan1996/shopizer-app:latest
+   
+     stage('Push Docker image') {
+            environment {
+                DOCKER_HUB_LOGIN = credentials('Docker_Hub')
+            }
+            steps {
+		 bat '''
 		 
-     		 '''	 
-	     }
-      }
-    }
+			docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW
+			docker push debaduttapradhan1996/shopizer-app:latest
+		
+		'''
+            }
+        }
+
  
   
 }
