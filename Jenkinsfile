@@ -41,21 +41,19 @@ pipeline {
        }
    
      stage('Push Docker image') {
-            environment {
-                DOCKER_HUB_LOGIN = credentials('Docker_Hub','https://hub.docker.com/repositories')
-            }
+             environment {
+			    registry = "debaduttapradhan1996/shopizer-app"
+			    registryCredential = ‘Docker_Hub’
+  		}
             steps {
-		 bat '''
-		 
-			docker login -u debaduttapradhan1996 --password-stdin
-			docker push debaduttapradhan1996/shopizer-app:latest
-		
-		'''
-            }
-        }
+		   withDockerRegistry( registryCredential, url: 'https://hub.docker.com/repositories' ){
+			 bat '''
+				docker push debaduttapradhan1996/shopizer-app:latest
 
- 
-  
+			'''
+		   }
+	  	}
+       } 
 }
 post {
         always {
