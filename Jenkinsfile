@@ -40,14 +40,12 @@ pipeline {
 	      }
        }
    
-     stage('Push Docker image') {
-	  steps{
-		    withDockerRegistry([ credentialsId: "Docker_Hub", url: "https://index.docker.io/" ]){
-			
-			bat "docker push debaduttapradhan1996/shopizer-app:latest"   
-	  	   }
-	   }
-       } 
+      stage('Push image') {
+         steps {
+           withDockerRegistry([url: "https://us-east-1.console.aws.amazon.com/ecr/repositories/sophizer-app/?region=us-east-1",credentialsId: "ecr:us-east-1:shopizer_id"]) {
+           bat 'docker push debaduttapradhan1996/shopizer-app:latest'
+               }
+        }
 }
 post {
         always {
