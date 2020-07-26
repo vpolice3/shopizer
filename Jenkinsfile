@@ -47,7 +47,7 @@ pipeline {
             steps {
 		 bat '''
 		 
-			docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW
+			docker login -u debaduttapradhan1996 -p Dinesh@1995
 			docker push debaduttapradhan1996/shopizer-app:latest
 		
 		'''
