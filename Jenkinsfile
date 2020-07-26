@@ -43,10 +43,10 @@ pipeline {
      stage('Push Docker image') {
              environment {
 			    registry = "debaduttapradhan1996/shopizer-app"
-			    registryCredential = ‘Docker_Hub’
+			    registryCredential = 'Docker_Hub'
   		}
             steps {
-		   withDockerRegistry( registryCredential, url: 'https://hub.docker.com/repositories' ){
+		   withDockerRegistry( registryCredential,  'https://hub.docker.com/repositories' ){
 			 bat '''
 				docker push debaduttapradhan1996/shopizer-app:latest
 
