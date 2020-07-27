@@ -67,7 +67,7 @@ pipeline {
                     bat '-PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR'
                 }*/
 		sshagent(['Hackanthon-AWS-connection']) {
-		   bat "sudo docker run debaduttapradhan1996/shopizer-app:latest"
+		   bat "ssh -o StrictHostKeyChecking=no ubuntu@18.209.225.172 sudo docker run debaduttapradhan1996/shopizer-app:latest"
 		}
             }
       }
