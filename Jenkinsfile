@@ -59,13 +59,16 @@ pipeline {
 	   }
        } 
       stage('Deploy to AWS') {
-            environment {
+            /*environment {
                 DOCKER_HUB_LOGIN = credentials('docker-hub')
-            }
+            }*/
             steps {
-                withAWS(credentials: 'aws-credentials', region: env.REGION) {
+               /* withAWS(credentials: 'aws-credentials', region: env.REGION) {
                     bat '-PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR'
-                }
+                }*/
+		sshagent(['Hackanthon-AWS-connection']) {
+		   bat "sudo docker run debaduttapradhan1996/shopizer-app:latest"
+		}
             }
 }
 post {
