@@ -58,6 +58,15 @@ pipeline {
 	  	   }
 	   }
        } 
+      stage('Deploy to AWS') {
+            environment {
+                DOCKER_HUB_LOGIN = credentials('docker-hub')
+            }
+            steps {
+                withAWS(credentials: 'aws-credentials', region: env.REGION) {
+                    bat '-PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR'
+                }
+            }
 }
 post {
         always {
