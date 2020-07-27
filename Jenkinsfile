@@ -70,6 +70,7 @@ pipeline {
 		   bat "sudo docker run debaduttapradhan1996/shopizer-app:latest"
 		}
             }
+      }
 }
 post {
         always {
