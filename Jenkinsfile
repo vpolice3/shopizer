@@ -49,11 +49,14 @@ pipeline {
 	   }
        } 
        stage('Deploy On Aws'){
-	     def dockerRun = 'docker run -p 80:8080 -d --name shopizer-app debaduttapradhan1996/shopizer-app:latest'
-	sshagent(['dev-server']) {
-    
-		bat 'ssh -o StrictHostKeyChecking=no ec2-user@18.209.225.172 ${dockerRun}'
-		}
+		
+	       steps{
+			sshagent(['dev-server']) {
+			bat '''
+			ssh -o StrictHostKeyChecking=no ec2-user@18.209.225.172 sudo docker run debaduttapradhan1996/shopizer-app:latest
+			'''
+			}
+	   	}
    }
 }
 post {
