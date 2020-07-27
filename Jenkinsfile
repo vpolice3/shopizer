@@ -16,17 +16,7 @@ pipeline {
        '''
    }
    }
-   stage('SonarQube') {
-                steps {
-                   bat '''
-                     
-              mvn sonar:sonar \
-                    -Dsonar.projectKey=shopizer \
-                    -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=b671d65077153b089e410f7281ce474c4d27fd4d  
-                   '''
-   }
-   }
+
 
 
    stage('Approval') {
@@ -58,19 +48,13 @@ pipeline {
 	  	   }
 	   }
        } 
-      stage('Deploy to AWS') {
-            /*environment {
-                DOCKER_HUB_LOGIN = credentials('docker-hub')
-            }*/
-            steps {
-               /* withAWS(credentials: 'aws-credentials', region: env.REGION) {
-                    bat '-PsubnetId=$SUBNET_ID -PdockerHubUsername=$DOCKER_HUB_LOGIN_USR'
-                }*/
-		sshagent(['Hackanthon-AWS-connection']) {
-		   bat "ssh -o StrictHostKeyChecking=no ubuntu@18.209.225.172 sudo docker run debaduttapradhan1996/shopizer-app:latest"
+       stage('Deploy On Aws'){
+	     def dockerRun = 'docker run -p 80:8080 -d --name shopizer-app debaduttapradhan1996/shopizer-app:latest'
+	sshagent(['dev-server']) {
+    
+		bat 'ssh -o StrictHostKeyChecking=no ec2-user@18.209.225.172 ${dockerRun}"
 		}
-            }
-      }
+   }
 }
 post {
         always {
