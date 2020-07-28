@@ -57,7 +57,7 @@ pipeline {
 		*/
 	       steps{
 			sshagent(['dev-server']) {
-			bat 'ssh -o StrictHostKeyChecking=no ec2-user@3.85.1.232 sudo dokcer run debaduttapradhan1996/shopizer-app:latest ''
+			bat "ssh -o StrictHostKeyChecking=no ec2-user@3.85.1.232 sudo dokcer run debaduttapradhan1996/shopizer-app:latest"
 			}
 	   	}
    }
