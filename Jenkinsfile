@@ -61,7 +61,8 @@ pipeline {
 			}
 	   	}
    }
-} post {
+} 
+	post {
         always {
             //archiveArtifacts artifacts: 'generatedFile.log', onlyIfSuccessful: true
           
