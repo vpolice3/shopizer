@@ -49,11 +49,16 @@ pipeline {
 	   }
        } 
        stage('Deploy On Aws'){
+	       
+	       environment{
+		       
+		        dockerRun = "docker run -p 8080:8080 -d --name my-app kammana/my-app:2.0.0"
+	       }
 		
 	       steps{
 			sshagent(['dev-server']) {
 			bat '''
-			ssh -o StrictHostKeyChecking=no ec2-user@18.209.225.172 sudo docker run debaduttapradhan1996/shopizer-app:latest
+			ssh -o StrictHostKeyChecking=no ec2-user@3.85.1.232 ${dockerRun}
 			'''
 			}
 	   	}
