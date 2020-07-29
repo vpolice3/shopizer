@@ -35,7 +35,7 @@ pipeline {
 		bat '''
 			  cd sm-shop
 			  docker build -f "Dockerfile" -t debaduttapradhan1996/shopizer-app:latest .
-			  docker build -f "Dockerfile.3.0.0" -t debaduttapradhan1996/shopizer-spring-boot:latest .
+			 
 		  
 		'''
 	      }
